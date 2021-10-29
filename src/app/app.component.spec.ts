@@ -1,15 +1,26 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ChildButtonComponent } from './child-button/child-button.component';
+import { GistsComponent } from './gists/gists.component';
+
+@Component({ selector: 'app-child-form', template: '<div></div>' })
+class MockChildForm {
+  @Input() requiredFields: string[] = [];
+  @Input() person!: any;
+}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [
-        AppComponent
+        AppComponent,
+        ChildButtonComponent,
+        MockChildForm,
+        GistsComponent,
       ],
     }).compileComponents();
   });
@@ -17,19 +28,11 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
 
-  it(`should have as title 'workshop'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('workshop');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('workshop app is running!');
+
+    expect(app).toBeTruthy();
+
+    expect(app.title).toEqual('Angular Unit Test');
   });
 });

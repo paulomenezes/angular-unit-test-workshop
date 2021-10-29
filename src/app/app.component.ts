@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'workshop';
+export class AppComponent implements OnInit {
+  title = 'Angular';
+
+  ngOnInit(): void {
+    this.title = 'Angular Unit Test';
+  }
+
+  onPress(id: number): void {
+    this.title = `Pressed: ${id}`;
+  }
 }

@@ -1,0 +1,13 @@
+<form [formGroup]="formGroup">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" formControlName="name" name="name" />
+  </div>
+
+  <div>
+    <h1>Name: {{ formGroup.controls.name.value }}</h1>
+
+    <hr />
+    <h2>{{ person.name }} - {{ person.age }}</h2>
+  </div>
+</form>
